@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./js/flexible.js"></script>
+    <!-- introduce Vue 2.x version -->
+    <script src="./js/vue.min.js"></script>
+
+    <!-- introduce Vant CSS file -->
+    <link rel="stylesheet" href="./css/vant.min.css" />
+
+    <!-- introduce Vant component -->
+    <script src="./js/vant.min.js"></script>
+    <script src="./js/echart.js"></script>
+    <link rel="stylesheet" href="./css/calories.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <van-loading
+        size=".8rem"
+        class="vantLoading"
+        v-show="loading"
+        vertical
+        style="top: 0"
+        >loading...</van-loading
+      >
+      <div class="foodCalories">
+        <h4 class="foodCaloriesTitle">Totally You have taken</h4>
+        <div class="foodCaloriesEchart">
+          <div class="echart" ref="chart"></div>
+        </div>
+        <div
+          class="foodCaloriesContent"
+          v-for="(item, index) in foodList"
+          :key="index"
+        >
+          <div class="foodCaloriesContentTop">
+            <h4>{{ item.time }}</h4>
+            <div class="rightFoodCaloriesNum">
+              <span> {{ caloriesNumber[index] }} calories</span>
+              <van-icon name="add" class="addIcon" />
+            </div>
+          </div>
+          <div class="foodCaloriesContentMiddle">
+            <div class="swipe-container">
+              <div class="swipe-cell" v-for="(value, j) in item.list" :key="j">
+                <div class="swipe-content">
+                  <img
+                    :src="`${value.imgPath}`"
+                    alt="Food"
+                    class="food-image"
+                  />
+                  <div class="cell-content">
+                    <span class="cell-title">{{value.foodName}}</span>
+                    <span class="cell-value"
+                      >{{ value.grams * value.foodHeat[0].formula }}
+                      calories</span
+                    >
+                  </div>
+                  <span @click="setFoodConfirm(value,j,item)" class="arrow"
+                    >&#x279C;</span
+                  >
+                </div>
+                <div class="delete-button">
+                  <van-icon
+                    name="delete"
+                    class="del"
+                    @click="delFood(value,j,item)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <van-popup
+          v-if="!loading"
+          v-model="setFoodShowConfirm"
+          safe-area-inset-bottom
+          close-icon-position="top-left"
+          class="foodshowConfirm"
+          position="bottom"
+          :style="{ height: '70%' }"
+        >
+          <div class="foodshowConfirmTop">
+            <van-icon
+              name="cross"
+              class="closeConfirm"
+              @click="setFoodShowConfirm = false"
+            >
+            </van-icon>
+            <p class="foodShowName">{{ foodstuff.foodName }}</p>
+          </div>
+          <div class="foodShowList">
+            <van-grid column-num="3">
+              <van-grid-item v-for="(item,value) in (foodstuff.foodHeat)">
+                <h5>{{item.name}}</h5>
+                <p>{{ total(item)}} <span>{{item.unit}}</span></p>
+              </van-grid-item>
+            </van-grid>
+            <div class="foodShowNumber">
+              <van-cell-group>
+                <van-field
+                  class="setFoodNumber"
+                  v-model="footGram"
+                  required
+                  type="number"
+                  :label-width="100"
+                />
+              </van-cell-group>
+              <div class="unitList">
+                <p><span>g / </span><span>Amount</span></p>
+              </div>
+            </div>
+            <div class="foodGramsTips">
+              <p v-if="foodstuff.grams">
+                (Note: each amount is {{ foodstuff.grams }} grams)
+              </p>
+            </div>
+            <h4 class="done" @click="setFoodCalories()">done</h4>
+          </div>
+        </van-popup>
+      </div>
+    </div>
+    <script src="./js/request.js"></script>
+    <script src="./js/calories.js"></script>
+    
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const swipeCells = document.querySelectorAll(".swipe-cell");
+      swipeCells.forEach((cell) => {
+        let startX;
+
+        cell.addEventListener("touchstart", (e) => {
+          startX = e.touches[0].clientX;
+        });
+
+        cell.addEventListener("touchmove", (e) => {
+          const touch = e.touches[0];
+          const change = startX - touch.clientX;
+          if (change > 0) {
+            cell.classList.add("swiped");
+          }
+        });
+
+        cell.addEventListener("touchend", (e) => {
+          const change = startX - e.changedTouches[0].clientX;
+          if (change < 50) {
+            cell.classList.remove("swiped");
+          }
+        });
+      });
+    });
+  </script>
+</html>

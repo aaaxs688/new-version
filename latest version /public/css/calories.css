@@ -1,0 +1,330 @@
+* {
+    margin:0;
+    padding: 0;
+    list-style: none;
+}   
+#app {
+    height: auto;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.foodCalories {
+    width: 10rem;
+    height: 100%;
+    background: #D8E9E1;
+    box-sizing: border-box;
+    padding-bottom: 1.5rem;
+    /* padding: 2.4rem 0 0 0; */
+}
+.foodCaloriesTitle {
+    font-size: .64rem;
+    margin-left: .32rem;
+}
+.foodCaloriesEchart {
+    width: 9rem;
+    height: 5.7867rem;
+    background-color: white;
+    border-radius: .5333rem;
+    margin: .6933rem auto 0;
+}
+.foodCaloriesContent {
+    margin-top: 1.4933rem;
+    box-sizing: border-box;
+    padding: 0 .32rem;
+}
+.foodCaloriesContentTop {
+    display: flex;
+    justify-content: space-between;  
+    align-items: center;  
+}
+.foodCaloriesContentTop>h4 {
+    font-size: .64rem;
+}
+.rightFoodCaloriesNum>span {
+    font-size: .32rem;
+    font-weight: 600;
+
+}
+.addIcon {
+    margin-left: .2667rem;
+    font-size: .7rem;
+    background-color: transparent;
+}
+
+.swipe-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.swipe-cell {
+    position: relative;
+    background: white;
+    border-radius: .2667rem;
+    margin: .2667rem;
+    box-shadow: 0 .0533rem .2667rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.swipe-content {
+    display: flex;
+    align-items: center;
+    padding: .2667rem;
+    transition: transform 0.5s;
+}
+
+.food-image {
+    width: 1.3333rem;
+    height: 1.3333rem;
+    border-radius: .1333rem;
+    margin-right: .2667rem;
+    transition: opacity 0.5s;
+}
+
+.cell-content {
+    flex-grow: 1;
+}
+
+.cell-title {
+    font-weight: bold;
+    display: block;
+}
+
+.cell-value {
+    color: #888;
+}
+
+.arrow {
+    font-size: .5333rem;
+    margin-left: .2667rem;
+}
+
+.delete-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1333rem;
+    background-color: #D08282;
+    color: white;
+    border-radius: 0 .2667rem .2667rem 0;
+    transform: translateX(100%);
+    transition: transform 0.5s, opacity 0.5s;
+    opacity: 0;
+}
+
+.swipe-cell.swiped .swipe-content {
+    transform: translateX(-2.1333rem);  /* move box to the left */
+}
+
+.swipe-cell.swiped .food-image {
+    opacity: 0;
+}
+
+.swipe-cell.swiped .delete-button {
+    transform: translateX(0);
+    opacity: 1;
+}
+.del {
+    color: black;
+    font-size: .5333rem;
+}
+.rightFoodCaloriesNum {
+    display: flex;
+    align-items: center;
+}
+.foodshowConfirm {
+    background-color: #f2efdc;
+    box-sizing: border-box;
+    padding: .4533rem .2667rem 0;
+}
+.closeConfirm {
+    font-size: .6rem;
+}
+.foodShowName {
+    text-align: center;
+    font-size: .6rem;
+}
+.vantLoading {
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vantLoading .van-loading__text {
+    font-size: .4267rem;
+}
+.foodShowList {
+    margin-top: 1.5467rem;
+}
+.foodShowList>h5 {
+    font-size: .32rem;
+}
+.van-grid-item__content {
+    background: #f2efdc;
+}
+.van-grid-item__content>p {
+    width: 70%;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: .5133rem;
+    padding: 0 0 .1067rem;
+    border-bottom:.0267rem solid #AFACAC;
+}
+.foodShowNumber {
+    margin-top: 2.6667rem;
+    display: flex;
+}
+.setFoodNumber {
+    width: 2.4rem;
+    padding: .1333rem 0;
+    box-sizing: border-box;
+    border-bottom: .0367rem solid black;
+    background: transparent;
+    margin-left: 3.6267rem;
+    font-size: .5333rem;
+    color: #000000;
+    font-weight: 600;
+    text-align: center;
+}
+.van-cell-group {
+    background: transparent;
+}
+.van-field__control {
+    text-align: center;
+}
+
+.unitList {
+    display: flex;
+    font-size: .5333rem;
+    margin-left: .42rem;
+    margin-top: .4033rem;
+    font-weight: 600;
+    color:#AFACAC;
+}
+.unitList>p>span:nth-child(2)::before {
+    content: ' / ';
+    color: #000;
+}
+.unitList>p>span:nth-child(2) {
+    color:#AFACAC;
+}
+.foodGramsTips{
+    margin: .38rem 0 0 4.2667rem;
+}
+.foodGramsTips>p {
+    font-size: .32rem;
+    font-weight: 600;
+}
+.done {
+    width: 4rem;
+    height: .8267rem;
+    background-color: #237320;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    line-height: .8267rem;
+    margin: 1.8533rem auto 0;
+    border-radius: .2667rem;
+}
+p.act {
+    color: #0283ef;
+    border-bottom: .0267rem solid #0283ef;
+}
+h5.act {
+    color: #0283ef;
+}
+.echart {
+    width: 9rem;
+    height: 5.7867rem;
+}
+.echart>div:nth-child(1) {
+    width: 9rem !important;
+    height: 5.7867rem !important;
+}
+.echart canvas {
+    width: 9rem !important;
+    height: 5.7867rem !important;
+}
+.van-dialog {
+    width: 8.5333rem;
+}
+.van-dialog__header {
+    padding-top: .64rem;
+    font-weight: 500;
+    line-height: .64rem;
+    text-align: center;
+    font-size: .4267rem;
+}
+.van-dialog__message--has-title {
+    padding-top: .32rem;
+    color: #646566;
+}
+.van-dialog__message {
+    max-height: 60vh;
+    padding: .64rem;
+    overflow-y: auto;
+    font-size: .3733rem;
+    line-height: .5333rem;
+    white-space: pre-wrap;
+    text-align: center;
+    word-wrap: break-word;
+    -webkit-overflow-scrolling: touch;
+}
+.van-button--large {
+    height: 1.3333rem;
+}
+.van-button__text {
+    font-size: .48rem;
+}
+.van-notify {
+    padding: .2133rem .4267rem;
+    color: #fff;
+    font-size: .3733rem;
+    line-height: .5333rem;
+}
+span.active {
+    color:#000 !important;
+}
+.txImg {
+    width: 1.36rem;
+    height: 1.28rem;
+    border-radius: 50%;
+    margin: .64rem 0 .48rem 80%;
+}
+.foodCaloriesBottom {
+    position: fixed;
+    bottom:0;
+    width: 10rem;
+    height: 1.3333rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #000;
+    font-size: .5333rem;
+}
+.foodCaloriesBottom div {
+    width: 50%;
+    text-align: center;
+    height: 100%;
+    line-height: 1.3333rem;
+}
+.foodCaloriesBottom div:nth-child(1) {
+    background: green;
+}
+.home {
+    color:white;
+    text-align: center;
+}
+.history {
+    color: white;
+}
